@@ -65,6 +65,42 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
     }
   };
 
+  const fillDummyData = () => {
+    const dummyData: FormData = {
+      documentType: formData.documentType,
+      companyName: 'Acme Corporation Ltd.',
+      companyAddress: '123 Business Avenue, Tech Park, New York, NY 10001',
+      companyPhone: '+1 (212) 555-0147',
+      companyEmail: 'hr@acmecorp.com',
+      logo: null,
+      signature: null,
+      seal: null,
+      candidateName: 'James Mitchell',
+      position: 'Senior Software Engineer',
+      department: 'Engineering',
+      salary: '₹15,00,000 per annum',
+      startDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      reportingTo: 'Dr. Sarah Johnson',
+      termsAndConditions: 'Employment is subject to successful background verification and medical examination. The employment relationship is at-will and can be terminated by either party with 30 days notice. Standard benefits package includes health insurance, retirement plan, and paid time off.',
+      employeeName: 'Michael Chen',
+      designation: 'Senior Product Manager',
+      employeeId: 'EMP-2019-00847',
+      joiningDate: '2019-06-15',
+      relievingDate: new Date().toISOString().split('T')[0],
+      serviceDescription: 'Michael Chen has been a valuable member of our organization for 5 years. During his tenure, he has demonstrated exceptional leadership in product development and team management. He has consistently delivered high-quality work and maintained excellent professional relationships.',
+      receiptNumber: 'RCP-2024-001847',
+      receiptDate: new Date().toISOString().split('T')[0],
+      itemDescription: 'Professional Services - Software Development Consultation\nFeatures: Full-stack development, API integration, database optimization\nDuration: 40 hours @ $150/hour',
+      quantity: '40',
+      unitPrice: '150',
+      totalAmount: '6000',
+      paymentMethod: 'Bank Transfer',
+      receivedBy: 'Finance Department',
+    };
+
+    setFormData(dummyData);
+  };
+
   const isOfferLetter = formData.documentType === 'offer';
   const isRelievingLetter = formData.documentType === 'relieving';
   const isReceipt = formData.documentType === 'receipt';
@@ -431,19 +467,28 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       )}
 
       {/* Submit Button */}
-      <div className="border-t pt-8 flex gap-4">
-        <button
-          type="submit"
-          className="flex-1 px-6 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition"
-        >
-          Preview Document
-        </button>
+      <div className="border-t pt-8 flex flex-col gap-4">
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            className="flex-1 px-6 py-3 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition"
+          >
+            Preview Document
+          </button>
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="flex-1 px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition"
+          >
+            Cancel
+          </button>
+        </div>
         <button
           type="button"
-          onClick={() => window.history.back()}
-          className="flex-1 px-6 py-3 bg-gray-300 text-gray-800 font-semibold rounded-lg hover:bg-gray-400 transition"
+          onClick={fillDummyData}
+          className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
         >
-          Cancel
+          Fill Dummy Data
         </button>
       </div>
     </form>
