@@ -60,8 +60,14 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
     if (onSubmit) {
       onSubmit(formData);
     } else {
-      const encodedData = encodeURIComponent(JSON.stringify(formData));
-      router.push(`/document-generator/${formData.documentType}/preview?data=${encodedData}`);
+      // Store data in localStorage and navigate
+      try {
+        localStorage.setItem('documentFormData', JSON.stringify(formData));
+        router.push(`/document-generator/${formData.documentType}/preview`);
+      } catch (error) {
+        console.error('[v0] Failed to save form data:', error);
+        alert('Failed to save document data. Please try again.');
+      }
     }
   };
 

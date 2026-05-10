@@ -1,7 +1,7 @@
 'use client';
 
-import React, { Suspense, useRef } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import React, { Suspense, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { DocumentPreview } from '@/components/DocumentPreview';
 import { FormData } from '@/lib/types';
@@ -9,20 +9,35 @@ import { downloadPDF } from '@/lib/pdf-generator';
 import { Download, Edit2, Loader } from 'lucide-react';
 
 function PreviewContent() {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const previewRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = React.useState(false);
+  const [formData, setFormData] = React.useState<FormData | null>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  let formData: FormData | null = null;
-  const dataParam = searchParams.get('data');
-
-  if (dataParam) {
+  useEffect(() => {
     try {
-      formData = JSON.parse(decodeURIComponent(dataParam));
+      const storedData = localStorage.getItem('documentFormData');
+      if (storedData) {
+        setFormData(JSON.parse(storedData));
+        localStorage.removeItem('documentFormData');
+      }
     } catch (error) {
-      console.error('Failed to parse form data:', error);
+      console.error('[v0] Failed to retrieve form data:', error);
+    } finally {
+      setIsLoading(false);
     }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Loader className="animate-spin w-8 h-8 text-yellow-600 mx-auto mb-4" />
+          <p className="text-gray-600">Loading preview...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!formData) {
