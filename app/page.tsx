@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, FileText, Download, Zap } from 'lucide-react';
 import { DOCUMENT_TYPES } from '@/lib/constants';
-
 export const metadata = {
   title: 'Professional Document Generator - Create HR Documents Instantly',
   description:

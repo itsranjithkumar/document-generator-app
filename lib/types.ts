@@ -1,4 +1,4 @@
-export type DocumentType = 'offer' | 'relieving' | 'receipt';
+export type DocumentType = 'offer' | 'relieving' | 'receipt' | 'courseCompletion' | 'internshipCertificate';
 
 export interface FormData {
   workLocation: string | undefined;
@@ -41,6 +41,7 @@ export interface FormData {
 }
 
 export interface DocumentTemplate {
+    url?: string;
   type: DocumentType;
   title: string;
   description: string;
