@@ -21,11 +21,13 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
     logo: null,
     signature: null,
     seal: null,
+    msmeLogoField: null,
     candidateName: '',
     position: '',
     department: '',
     salary: '',
     startDate: '',
+    workLocation: '',
     reportingTo: '',
     termsAndConditions: '',
     employeeName: '',
@@ -81,6 +83,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       logo: null,
       signature: null,
       seal: null,
+      msmeLogoField: null,
       candidateName: 'James Mitchell',
       position: 'Senior Software Engineer',
       department: 'Engineering',
@@ -102,6 +105,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       totalAmount: '6000',
       paymentMethod: 'Bank Transfer',
       receivedBy: 'Finance Department',
+      workLocation: undefined
     };
 
     setFormData(dummyData);
@@ -176,7 +180,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       {/* Company Images */}
       <div className="border-t pt-8">
         <h2 className="text-xl font-bold text-black mb-6">Company Assets</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <ImageUpload
             label="Company Logo"
             value={formData.logo}
@@ -194,6 +198,12 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
             value={formData.seal}
             onChange={(value) => handleImageChange('seal', value)}
             description="Official company seal/stamp"
+          />
+          <ImageUpload
+            label="MSME Logo"
+            value={formData.msmeLogoField}
+            onChange={(value) => handleImageChange('msmeLogoField', value)}
+            description="Ministry of MSME logo"
           />
         </div>
       </div>

@@ -1,6 +1,8 @@
 export type DocumentType = 'offer' | 'relieving' | 'receipt';
 
 export interface FormData {
+  workLocation: string | undefined;
+  msmeLogoField: any;
   documentType: DocumentType;
   companyName: string;
   companyAddress: string;

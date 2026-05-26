@@ -103,97 +103,353 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
       </div>
     ) : null;
 
-  /* ─── Signature block – offer letter (two signatories + seal) ─── */
-  const SignatureBlockOffer = () => (
-    <div style={{
-      marginTop: '32px',
-      paddingTop: '24px',
+ /* ─── Signature block – offer letter (reduced gap) ─── */
+const SignatureBlockOffer = () => (
+  <div
+    style={{
+      marginTop: '40px',
+      paddingTop: '28px',
       borderTop: '1px solid #ddd',
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-
-        {/* Authorized signatory */}
-        <div style={{ textAlign: 'center', width: '240px' }}>
-          {data.signature ? (
-            <img
-              src={data.signature}
-              alt="Signature"
-              style={{ height: '90px', width: '230px', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }}
-            />
-          ) : (
-            <div style={{ height: '90px', borderBottom: '1.5px solid #111', marginBottom: '12px', width: '230px', margin: '0 auto 12px' }} />
-          )}
-          <div style={{ borderTop: '1.5px solid #111', paddingTop: '8px', width: '230px', margin: '0 auto' }}>
-            <p style={{ margin: 0, fontSize: '11px', fontWeight: 700, color: '#111', letterSpacing: '0.8px', textTransform: 'uppercase' }}>Authorized Signatory</p>
-            <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#666' }}>{data.companyName}</p>
-          </div>
-        </div>
-
-        {/* Seal – center with breathing room */}
-        {data.seal && (
-          <div style={{ textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 40px', gap: '8px' }}>
-            <img
-              src={data.seal}
-              alt="Company Seal"
-              style={{ height: '100px', width: '100px', objectFit: 'contain', opacity: 0.88 }}
-            />
-            <p style={{ margin: 0, fontSize: '10px', color: '#999', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Official Seal</p>
-          </div>
-        )}
-
-        {/* Candidate acceptance */}
-        <div style={{ textAlign: 'center', width: '240px' }}>
-          <div style={{ height: '90px', marginBottom: '12px', width: '230px', margin: '0 auto 12px' }} />
-          <div style={{ borderTop: '1.5px solid #111', paddingTop: '8px', width: '230px', margin: '0 auto' }}>
-            <p style={{ margin: 0, fontSize: '11px', fontWeight: 700, color: '#111', letterSpacing: '0.8px', textTransform: 'uppercase' }}>Candidate Signature</p>
-            <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#666' }}>Date: _______________</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  );
-
-  /* ─── Signature block – relieving (authority only + seal with proper spacing) ─── */
-  const SignatureBlockRelieving = () => (
-    <div style={{
-      marginTop: '32px',
-      paddingTop: '24px',
-      borderTop: '1px solid #ddd',
-      display: 'flex',
-      alignItems: 'flex-end',
-      gap: '80px',       /* wide gap between signatory and seal */
-    }}>
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+      }}
+    >
       {/* Authorized signatory */}
       <div style={{ textAlign: 'center', width: '240px' }}>
         {data.signature ? (
           <img
             src={data.signature}
             alt="Signature"
-            style={{ height: '90px', width: '230px', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }}
+            style={{
+              height: '130px',
+              width: '230px',
+              objectFit: 'contain',
+              display: 'block',
+              margin: '0 auto 4px',
+            }}
           />
         ) : (
-          <div style={{ height: '90px', borderBottom: '1.5px solid #111', marginBottom: '12px', width: '230px', margin: '0 auto 12px' }} />
+          <div
+            style={{
+              height: '130px',
+              borderBottom: '2px solid #111',
+              width: '230px',
+              margin: '0 auto 4px',
+            }}
+          />
         )}
-        <div style={{ borderTop: '1.5px solid #111', paddingTop: '8px', width: '230px', margin: '0 auto' }}>
-          <p style={{ margin: 0, fontSize: '11px', fontWeight: 700, color: '#111', letterSpacing: '0.8px', textTransform: 'uppercase' }}>Authorized Signatory</p>
-          <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#666' }}>{data.companyName}</p>
+
+        <div
+          style={{
+            borderTop: '2px solid #111',
+            paddingTop: '4px',
+            width: '230px',
+            margin: '0 auto',
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: '11px',
+              fontWeight: 700,
+              color: '#111',
+              letterSpacing: '0.8px',
+              textTransform: 'uppercase',
+            }}
+          >
+            Authorized Signatory
+          </p>
+
+          <p
+            style={{
+              margin: '3px 0 0',
+              fontSize: '11px',
+              color: '#666',
+            }}
+          >
+            {data.companyName}
+          </p>
         </div>
       </div>
 
-      {/* Seal – pushed right with explicit gap */}
+      {/* Seal */}
       {data.seal && (
-        <div style={{ textAlign: 'center' }}>
+        <div
+          style={{
+            textAlign: 'center',
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '0 40px',
+            gap: '8px',
+          }}
+        >
           <img
             src={data.seal}
             alt="Company Seal"
-            style={{ height: '100px', width: '100px', objectFit: 'contain', opacity: 0.88, display: 'block', marginBottom: '8px' }}
+            style={{
+              height: '100px',
+              width: '100px',
+              objectFit: 'contain',
+              opacity: 0.88,
+            }}
           />
-          <p style={{ margin: 0, fontSize: '10px', color: '#999', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Official Seal</p>
+
+          <p
+            style={{
+              margin: 0,
+              fontSize: '10px',
+              color: '#999',
+              letterSpacing: '0.5px',
+              textTransform: 'uppercase',
+            }}
+          >
+            Official Seal
+          </p>
         </div>
       )}
+
+      {/* MSME Logo */}
+      <div
+        style={{
+          textAlign: 'center',
+          width: '240px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
+        {data.msmeLogoField ? (
+          <img
+            src={data.msmeLogoField}
+            alt="MSME Logo"
+            style={{
+              height: '100px',
+              width: 'auto',
+              maxWidth: '150px',
+              objectFit: 'contain',
+              marginBottom: '8px',
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              height: '100px',
+              width: '150px',
+              background: '#f9f4e8',
+              border: '2px solid #B8860B',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '4px',
+              marginBottom: '8px',
+            }}
+          >
+            <span
+              style={{
+                fontSize: '10px',
+                color: '#B8860B',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                textAlign: 'center',
+                padding: '10px',
+              }}
+            >
+              MSME LOGO
+            </span>
+          </div>
+        )}
+
+        <p
+          style={{
+            margin: 0,
+            fontSize: '10px',
+            color: '#777',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+          }}
+        >
+          Ministry of MSME
+        </p>
+      </div>
     </div>
-  );
+  </div>
+);
+
+/* ─── Signature block – relieving (reduced gap) ─── */
+const SignatureBlockRelieving = () => (
+  <div
+    style={{
+      marginTop: '40px',
+      paddingTop: '28px',
+      borderTop: '1px solid #ddd',
+      display: 'flex',
+      alignItems: 'flex-end',
+      gap: '60px',
+      justifyContent: 'space-between',
+    }}
+  >
+    {/* Authorized signatory */}
+    <div style={{ textAlign: 'center', width: '240px' }}>
+      {data.signature ? (
+        <img
+          src={data.signature}
+          alt="Signature"
+          style={{
+            height: '130px',
+            width: '230px',
+            objectFit: 'contain',
+            display: 'block',
+            margin: '0 auto 4px',
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            height: '130px',
+            borderBottom: '2px solid #111',
+            width: '230px',
+            margin: '0 auto 4px',
+          }}
+        />
+      )}
+
+      <div
+        style={{
+          borderTop: '2px solid #111',
+          paddingTop: '4px',
+          width: '230px',
+          margin: '0 auto',
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            fontSize: '11px',
+            fontWeight: 700,
+            color: '#111',
+            letterSpacing: '0.8px',
+            textTransform: 'uppercase',
+          }}
+        >
+          Authorized Signatory
+        </p>
+
+        <p
+          style={{
+            margin: '3px 0 0',
+            fontSize: '11px',
+            color: '#666',
+          }}
+        >
+          {data.companyName}
+        </p>
+      </div>
+    </div>
+
+    {/* Seal */}
+    {data.seal && (
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src={data.seal}
+          alt="Company Seal"
+          style={{
+            height: '100px',
+            width: '100px',
+            objectFit: 'contain',
+            opacity: 0.88,
+            display: 'block',
+            marginBottom: '8px',
+          }}
+        />
+
+        <p
+          style={{
+            margin: 0,
+            fontSize: '10px',
+            color: '#999',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+          }}
+        >
+          Official Seal
+        </p>
+      </div>
+    )}
+
+    {/* MSME */}
+    <div
+      style={{
+        textAlign: 'center',
+        width: '200px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+      }}
+    >
+      {data.msmeLogoField ? (
+        <img
+          src={data.msmeLogoField}
+          alt="MSME Logo"
+          style={{
+            height: '90px',
+            width: 'auto',
+            maxWidth: '140px',
+            objectFit: 'contain',
+            marginBottom: '8px',
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            height: '90px',
+            width: '140px',
+            background: '#f9f4e8',
+            border: '2px solid #B8860B',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '4px',
+            marginBottom: '8px',
+          }}
+        >
+          <span
+            style={{
+              fontSize: '9px',
+              color: '#B8860B',
+              fontWeight: 700,
+              letterSpacing: '0.5px',
+              textAlign: 'center',
+              padding: '8px',
+            }}
+          >
+            MSME LOGO
+          </span>
+        </div>
+      )}
+
+      <p
+        style={{
+          margin: 0,
+          fontSize: '9px',
+          color: '#777',
+          letterSpacing: '0.5px',
+          textTransform: 'uppercase',
+        }}
+      >
+        Ministry of MSME
+      </p>
+    </div>
+  </div>
+);
 
   /* ─── Signature block – receipt ─── */
   const SignatureBlockReceipt = () => (
@@ -212,10 +468,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
           <img
             src={data.signature}
             alt="Signature"
-            style={{ height: '90px', width: '230px', objectFit: 'contain', display: 'block', marginBottom: '12px' }}
+            style={{ height: '110px', width: '230px', objectFit: 'contain', display: 'block', marginBottom: '12px' }}
           />
         ) : (
-          <div style={{ height: '90px', borderBottom: '1.5px solid #111', marginBottom: '12px', width: '230px' }} />
+          <div style={{ height: '110px', borderBottom: '1.5px solid #111', marginBottom: '12px', width: '230px' }} />
         )}
         <div style={{ borderTop: '1.5px solid #111', paddingTop: '8px', width: '230px' }}>
           <p style={{ margin: 0, fontSize: '10px', color: '#888', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 700 }}>Authorized Signature</p>
