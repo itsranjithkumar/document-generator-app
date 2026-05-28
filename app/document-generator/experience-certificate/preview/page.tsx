@@ -244,7 +244,7 @@ export default function CertificatePreview() {
                     CERTIFICATE OF EXPERIENCE
                   </div>
                   <div style={{
-                    fontSize: 12,
+                    fontSize: 14,
                     color: "#6b5d50",
                     letterSpacing: "0.1em",
                     fontWeight: 500,
@@ -258,7 +258,7 @@ export default function CertificatePreview() {
               <div style={{
                 display: "flex",
                 justifyContent: "space-between",
-                fontSize: 11,
+                fontSize: 13,
                 color: "#5a5244",
                 marginBottom: "40px",
                 paddingBottom: "16px",
@@ -266,15 +266,15 @@ export default function CertificatePreview() {
               }}>
                 <div>
                   <div style={{ fontWeight: 700, color: "#2d2416", letterSpacing: "0.05em", marginBottom: 4 }}>CERTIFICATE No.</div>
-                  <div style={{ letterSpacing: "0.03em", fontSize: 12 }}>{data.certificateNo || "XX-XXXX-XXXX"}</div>
+                  <div style={{ letterSpacing: "0.03em", fontSize: 13 }}>{data.certificateNo || "XX-XXXX-XXXX"}</div>
                 </div>
                 <div style={{ textAlign: "center", marginLeft: "-20px" }}>
                   <div style={{ fontWeight: 700, color: "#2d2416", letterSpacing: "0.05em", marginBottom: 4 }}>ISSUED ON</div>
-                  <div style={{ letterSpacing: "0.03em", fontSize: 12 }}>{formatDate(data.certDate) || "— — —"}</div>
+                  <div style={{ letterSpacing: "0.03em", fontSize: 13 }}>{formatDate(data.certDate) || "— — —"}</div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontWeight: 700, color: "#2d2416", letterSpacing: "0.05em", marginBottom: 4 }}>VALID</div>
-                  <div style={{ letterSpacing: "0.03em", fontSize: 12 }}>Perpetual</div>
+                  <div style={{ letterSpacing: "0.03em", fontSize: 13 }}>Perpetual</div>
                 </div>
               </div>
 
@@ -292,7 +292,7 @@ export default function CertificatePreview() {
                 </p>
 
                 <p style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: 700,
                   color: "#d4af37",
                   marginBottom: "20px",
@@ -305,7 +305,7 @@ export default function CertificatePreview() {
 
               {/* ── Main Content ── */}
               <div style={{
-                fontSize: 13.5,
+                fontSize: 15,
                 color: "#3a3429",
                 lineHeight: 2.1,
                 textAlign: "justify",
@@ -357,16 +357,16 @@ export default function CertificatePreview() {
                     <div style={{ width: 240, height: 120, borderBottom: "2px solid #2d2416", marginBottom: 4 }} />
                   )}
                   <div style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     fontWeight: 700,
                     color: "#2d2416",
-                    marginTop: 2,
+                    marginTop: -28,
                     letterSpacing: "0.05em",
                     textAlign: "center",
                   }}>
                     {data.hrName || "Authorized Signatory"}
                   </div>
-                  <div style={{ fontSize: 9, color: "#6b5d50", marginTop: 1, textAlign: "center" }}>
+                  <div style={{ fontSize: 13, color: "#6b5d50", marginTop: 1, textAlign: "center" }}>
                     {data.hrDesignation || "Head - Human Resources"}
                   </div>
                 </div>
@@ -379,6 +379,7 @@ export default function CertificatePreview() {
                       height: 100,
                       objectFit: "contain",
                       marginBottom: 8,
+                      marginTop: 8,
                     }} />
                   ) : (
                     <div style={{
@@ -393,10 +394,11 @@ export default function CertificatePreview() {
                       color: "#9a8860",
                       fontWeight: 600,
                       marginBottom: 8,
+                      marginTop: 8,
                       background: "linear-gradient(135deg, #f0e5cc, #faf8f3)",
                     }}>OFFICIAL SEAL</div>
                   )}
-                  <div style={{ fontSize: 10, color: "#6b5d50", marginTop: 6 }}>
+                  <div style={{ fontSize: 13, color: "#6b5d50", marginTop: 6 }}>
                     {data.companyName}
                   </div>
                 </div>
