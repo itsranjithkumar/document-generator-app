@@ -1,44 +1,52 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, FileText, Download, Zap } from 'lucide-react';
-import { DOCUMENT_TYPES } from '@/lib/constants';
-export const metadata = {
-  title: 'Professional Document Generator - Create HR Documents Instantly',
-  description:
-    'Generate professional offer letters, relieving letters, and receipts with customizable templates and instant PDF download.',
-};
+import { FileText, Award, ExternalLink, ArrowRight } from 'lucide-react';
+
+const documentCards = [
+  {
+    icon: <Award className="w-8 h-8" />,
+    title: 'Course Completion Certificate',
+    description: 'Create professional certificates for completed courses',
+    href: '/document-generator/course-completion/form',
+  },
+  {
+    icon: <FileText className="w-8 h-8" />,
+    title: 'Experience Certificate',
+    description: 'Generate work experience certificates for employees',
+    href: '/document-generator/experience-certificate/form',
+  },
+  {
+    icon: <FileText className="w-8 h-8" />,
+    title: 'Offer Letter',
+    description: 'Create professional offer letters for new employees',
+    href: '/document-generator',
+  },
+  {
+    icon: <FileText className="w-8 h-8" />,
+    title: 'Relieving Letter',
+    description: 'Generate formal relieving letters for departing employees',
+    href: '/document-generator',
+  },
+];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      {/* Header Navigation */}
-      <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
+    <main className="min-h-screen bg-white text-foreground">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-14">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                D
-              </div>
-              <span className="font-bold text-xl text-black hidden sm:inline">DocGen</span>
+              <span className="text-xl font-semibold text-foreground">DocGen</span>
             </div>
-            <nav className="flex items-center gap-6">
-              <Link
-                href="/#features"
-                className="text-gray-700 hover:text-black transition"
-              >
-                Features
-              </Link>
-              <Link
-                href="/#documents"
-                className="text-gray-700 hover:text-black transition"
-              >
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="#documents" className="text-sm text-muted-foreground hover:text-foreground transition">
                 Documents
               </Link>
-              <Link
-                href="/document-generator"
-                className="px-6 py-2 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-700 transition"
-              >
-                Start Now
+              <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground transition">
+                Features
               </Link>
             </nav>
           </div>
@@ -46,210 +54,164 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        <div className="text-center">
-          <h1 className="text-5xl sm:text-6xl font-bold text-black mb-6 text-balance">
-            Professional Documents,
-            <span className="text-yellow-600"> Instantly</span>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 text-center">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-sm font-medium text-muted-foreground mb-4 tracking-wide">GENERATE DOCUMENTS</p>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold text-balance leading-tight text-foreground mb-6">
+            Professional Documents Made Simple
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto text-balance">
-            Create professional HR documents with custom branding, signatures, and seals. Download as PDF in seconds.
+          <p className="text-lg sm:text-xl text-muted-foreground text-balance leading-relaxed mb-10">
+            Create certificates, offer letters, and more in seconds. Beautiful templates, instant PDF downloads, and complete customization.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/document-generator"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition shadow-lg hover:shadow-xl"
+              href="/document-generator/course-completion/form"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-foreground text-background font-medium rounded-full hover:bg-foreground/90 transition group"
             >
               Get Started
-              <ArrowRight size={20} />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 transition">
-              Watch Demo
-            </button>
+            <Link
+              href="#documents"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 border border-border text-foreground font-medium rounded-full hover:bg-accent transition"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
+      </section>
 
-        {/* Hero Image */}
-        <div className="mt-16 rounded-xl overflow-hidden shadow-2xl border border-gray-200">
-          <div className="bg-yellow-50 p-8 sm:p-12 aspect-video flex items-center justify-center">
-            <FileText size={120} className="text-yellow-600 opacity-20" />
-          </div>
+      {/* Documents Grid */}
+      <section id="documents" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="mb-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-3">Available Documents</h2>
+          <p className="text-muted-foreground">Choose from our collection of professional templates</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {documentCards.map((card, index) => (
+            <Link
+              key={index}
+              href={card.href}
+              className="group relative overflow-hidden rounded-2xl bg-accent/5 border border-border p-8 hover:border-foreground/20 hover:bg-accent/10 transition-all duration-300"
+            >
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-foreground text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+                {card.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">{card.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">{card.description}</p>
+              <div className="flex items-center gap-2 text-foreground text-sm font-medium group-hover:gap-3 transition-all">
+                Get Started
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+          ))}
+
+          {/* Receipt / Pay Slip Box - Links to external URL */}
+          <a
+            href="https://pay-slip-xi.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/50 p-8 hover:border-accent hover:from-accent/30 hover:to-accent/10 transition-all duration-300 cursor-pointer"
+          >
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent/80 text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+              <FileText className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">Pay Slip & Receipts</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">Access and manage your payment slips and receipts online</p>
+            <div className="flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
+              View Pay Slips
+              <ExternalLink className="w-4 h-4" />
+            </div>
+          </a>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-4">Why Choose DocGen?</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Everything you need to create professional HR documents
-          </p>
+      <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
+        <div className="mb-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-3">Why DocGen?</h2>
+          <p className="text-muted-foreground">Everything you need for professional document generation</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            { title: 'Lightning Fast', description: 'Generate documents in seconds with our intuitive interface' },
+            { title: 'Instant PDF Export', description: 'Download professionally formatted PDFs ready to share' },
+            { title: 'Professional Quality', description: 'Premium templates with perfect formatting' },
+            { title: 'Custom Branding', description: 'Add your logo, signature, and company details' },
+            { title: 'Multiple Templates', description: 'Certificates, letters, and more templates' },
+            { title: 'Easy to Use', description: 'No technical skills required, just fill and generate' },
+          ].map((feature, index) => (
+            <div key={index} className="space-y-3">
+              <h3 className="font-semibold text-foreground text-lg">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border">
+        <div className="mb-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-3">Three Simple Steps</h2>
+          <p className="text-muted-foreground">Your professional document in minutes</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
             {
-              icon: <Zap size={32} />,
-              title: 'Lightning Fast',
-              description: 'Generate documents in seconds with our intuitive form interface',
+              step: '01',
+              title: 'Choose Document Type',
+              description: 'Select from certificates, experience letters, offer letters, or more',
             },
             {
-              icon: <Download size={32} />,
-              title: 'Instant Download',
-              description: 'Download as PDF with one click, ready to print or email',
+              step: '02',
+              title: 'Fill in Details',
+              description: 'Enter your information in our simple, intuitive form',
             },
             {
-              icon: <FileText size={32} />,
-              title: 'Professional Templates',
-              description: 'Pre-designed templates for offer letters, relieving letters, and receipts',
+              step: '03',
+              title: 'Download PDF',
+              description: 'Preview and instantly download your professional document',
             },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-xl bg-white border border-gray-200 hover:shadow-lg transition text-center"
-            >
-              <div className="inline-block p-3 bg-yellow-100 rounded-lg text-yellow-600 mb-4">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-black mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+          ].map((item, index) => (
+            <div key={index} className="space-y-4">
+              <div className="text-sm font-semibold text-accent">{item.step}</div>
+              <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.description}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Documents Section */}
-      <section id="documents" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-4">Available Documents</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose from our collection of professional document templates
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {Object.entries(DOCUMENT_TYPES).map(([key, template]) => (
-            <div
-              key={key}
-              className="p-8 rounded-xl bg-white border-2 border-gray-200 hover:border-yellow-600 hover:shadow-lg transition"
-            >
-              <div className="text-6xl mb-4">{template.icon}</div>
-              <h3 className="text-2xl font-bold text-black mb-2">{template.title}</h3>
-              <p className="text-gray-600 mb-6">{template.description}</p>
-              <Link
-                href="/document-generator"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white font-semibold rounded-lg hover:bg-yellow-700 transition"
-              >
-                Create Now
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Customization Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-bold text-black mb-6">Full Customization</h2>
-            <ul className="space-y-4 text-gray-700">
-              {[
-                'Upload your company logo and branding',
-                'Add authorized signatures and seals',
-                'Customize all document content and fields',
-                'Professional gold-bordered templates',
-                'One-click PDF download and printing',
-                'Mobile-friendly and responsive design',
-              ].map((item, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-yellow-50 rounded-xl p-8 sm:p-12 aspect-square flex items-center justify-center border border-yellow-200">
-            <FileText size={200} className="text-yellow-600 opacity-20" />
-          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-2xl p-12 sm:p-16 text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">Ready to Generate Professional Documents?</h2>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Start creating your first document now. It takes less than a minute.
+        <div className="rounded-3xl bg-foreground text-background p-12 sm:p-16 text-center">
+          <h2 className="text-3xl sm:text-4xl font-semibold mb-4 text-balance">Start Creating Today</h2>
+          <p className="text-lg text-background/80 mb-8 max-w-2xl mx-auto">
+            Join thousands of users generating professional documents instantly
           </p>
           <Link
-            href="/document-generator"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-yellow-600 font-semibold rounded-lg hover:bg-gray-100 transition shadow-lg"
+            href="/document-generator/course-completion/form"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-background text-foreground font-medium rounded-full hover:bg-background/90 transition group"
           >
             Create Your First Document
-            <ArrowRight size={20} />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white mt-20">
+      <footer className="border-t border-border bg-accent/5 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold text-black mb-4">DocGen</h3>
-              <p className="text-gray-600 text-sm">
-                Professional document generation made simple.
-              </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+            <p className="text-sm text-muted-foreground">DocGen © 2024. All rights reserved.</p>
+            <div className="flex gap-6 text-sm text-muted-foreground">
+              <a href="#" className="hover:text-foreground transition">Privacy</a>
+              <a href="#" className="hover:text-foreground transition">Terms</a>
+              <a href="#" className="hover:text-foreground transition">Contact</a>
             </div>
-            <div>
-              <h4 className="font-semibold text-black mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    Documents
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-black mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-black mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    Privacy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="hover:text-black transition">
-                    Terms
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-200 pt-8 text-center text-sm text-gray-600">
-            <p>© 2024 DocGen. All rights reserved.</p>
           </div>
         </div>
       </footer>

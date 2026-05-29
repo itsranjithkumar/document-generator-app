@@ -1,5 +1,4 @@
-export type DocumentType = 'offer' | 'relieving' | 'receipt' | 'courseCompletion' | 'internshipCertificate';
-
+export type DocumentType = 'offer' | 'relieving';
 export interface FormData {
   workLocation: string | undefined;
   msmeLogoField: any;

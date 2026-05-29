@@ -366,57 +366,138 @@ export default function CertificatePreview() {
                   }}>
                     {data.hrName || "Authorized Signatory"}
                   </div>
-                  <div style={{ fontSize: 13, color: "#6b5d50", marginTop: 1, textAlign: "center" }}>
-                    {data.hrDesignation || "Head - Human Resources"}
-                  </div>
+                <div
+  style={{
+    fontSize: 13,
+    color: "#2d2416",
+    marginTop: 1,
+    textAlign: "center",
+    fontWeight: 600,
+    letterSpacing: "0.03em",
+  }}
+>
+  {data.hrDesignation || "CEO, Magizh Technologies"}
+</div>
                 </div>
 
                 {/* Center: Seal */}
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                  {data.seal ? (
-                    <img src={data.seal} alt="Seal" style={{
-                      width: 100,
-                      height: 100,
-                      objectFit: "contain",
-                      marginBottom: 8,
-                      marginTop: 8,
-                    }} />
-                  ) : (
-                    <div style={{
-                      width: 100,
-                      height: 100,
-                      borderRadius: "50%",
-                      border: "3px solid #d4af37",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 11,
-                      color: "#9a8860",
-                      fontWeight: 600,
-                      marginBottom: 8,
-                      marginTop: 8,
-                      background: "linear-gradient(135deg, #f0e5cc, #faf8f3)",
-                    }}>OFFICIAL SEAL</div>
-                  )}
-                  <div style={{ fontSize: 13, color: "#6b5d50", marginTop: 6 }}>
-                    {data.companyName}
-                  </div>
-                </div>
+            {/* Center: Seal */}
+<div
+  style={{
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+  {data.seal ? (
+    <img
+      src={data.seal}
+      alt="Seal"
+      style={{
+        width: 100,
+        height: 100,
+        objectFit: "contain",
+        marginBottom: 8,
+        marginTop: 8,
+      }}
+    />
+  ) : (
+    <div
+      style={{
+        width: 100,
+        height: 100,
+        borderRadius: "50%",
+        border: "3px solid #d4af37",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 11,
+        color: "#9a8860",
+        fontWeight: 600,
+        marginBottom: 8,
+        marginTop: 8,
+        background: "linear-gradient(135deg, #f0e5cc, #faf8f3)",
+      }}
+    >
+      OFFICIAL SEAL
+    </div>
+  )}
+
+  <div
+    style={{
+      fontSize: 13,
+      color: "#2d2416",
+      marginTop: 6,
+      fontWeight: 600,
+      textAlign: "center",
+      letterSpacing: "0.03em",
+    }}
+  >
+    {data.companyName}
+  </div>
+</div>
 
                 {/* Right: MSME Badge */}
-                <div style={{ flex: 1, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                  {data.msme ? (
-                    <img src={data.msme} alt="MSME" style={{
-                      height: 110,
-                      maxWidth: 170,
-                      objectFit: "contain",
-                    }} />
-                  ) : (
-                    <div style={{ width: 110, height: 110, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <div style={{ fontSize: 10, color: "#9a8860", fontWeight: 600 }}>MSME Badge</div>
-                    </div>
-                  )}
-                </div>
+            <div
+  style={{
+    flex: 1,
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+  {data.msme ? (
+    <>
+      <img
+        src={data.msme}
+        alt="MSME"
+        style={{
+          height: 110,
+          maxWidth: 170,
+          objectFit: "contain",
+        }}
+      />
+
+      <div
+        style={{
+          marginTop: 8,
+          fontSize: 11,
+          fontWeight: 600,
+          color: "#2d2416",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          textAlign: "center",
+        }}
+      >
+        MSME REGISTERED 
+      </div>
+    </>
+  ) : (
+    <div
+      style={{
+        width: 110,
+        height: 110,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: 10,
+          color: "#9a8860",
+          fontWeight: 600,
+        }}
+      >
+        MSME Badge
+      </div>
+    </div>
+  )}
+</div>
               </div>
 
             </div>

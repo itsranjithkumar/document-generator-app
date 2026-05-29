@@ -36,8 +36,8 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
     joiningDate: '',
     relievingDate: '',
     serviceDescription: '',
-    receiptNumber: '',
-    receiptDate: '',
+    // receiptNumber: '',
+    // receiptDate: '',
     itemDescription: '',
     quantity: '',
     unitPrice: '',
@@ -97,8 +97,8 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       joiningDate: '2019-06-15',
       relievingDate: new Date().toISOString().split('T')[0],
       serviceDescription: 'Michael Chen has been a valuable member of our organization for 5 years. During his tenure, he has demonstrated exceptional leadership in product development and team management. He has consistently delivered high-quality work and maintained excellent professional relationships.',
-      receiptNumber: 'RCP-2024-001847',
-      receiptDate: new Date().toISOString().split('T')[0],
+      // receiptNumber: 'RCP-2024-001847',
+      // receiptDate: new Date().toISOString().split('T')[0],
       itemDescription: 'Professional Services - Software Development Consultation\nFeatures: Full-stack development, API integration, database optimization\nDuration: 40 hours @ $150/hour',
       quantity: '40',
       unitPrice: '150',
@@ -113,7 +113,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
 
   const isOfferLetter = formData.documentType === 'offer';
   const isRelievingLetter = formData.documentType === 'relieving';
-  const isReceipt = formData.documentType === 'receipt';
+  // const isReceipt = formData.documentType === 'receipt';
 
   return (
     <form onSubmit={handlePreview} className="space-y-8 max-w-4xl mx-auto">
@@ -384,7 +384,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
       )}
 
       {/* Receipt Fields */}
-      {isReceipt && (
+      {/* {isReceipt && (
         <div className="border-t pt-8">
           <h2 className="text-xl font-bold text-black mb-6">Receipt Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -480,7 +480,7 @@ export const DocumentForm: React.FC<DocumentFormProps> = ({ onSubmit }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Submit Button */}
       <div className="border-t pt-8 flex flex-col gap-4">
