@@ -47,7 +47,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         </div>
 
         {/* Company details – right */}
-        <div style={{ textAlign: 'right' }}>
+        <div style={{ textAlign: 'right', fontFamily: '"Garamond", "Georgia", serif' }}>
           <h1 style={{
             fontSize: '19px', fontWeight: 700, color: '#111',
             margin: '0 0 5px', letterSpacing: '1px', textTransform: 'uppercase',
@@ -69,10 +69,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
   );
 
   const DocumentTitle = ({ title }: { title: string }) => (
-    <div style={{ textAlign: 'center', margin: '0 0 22px' }}>
+    <div style={{ textAlign: 'center', margin: '0 0 22px', fontFamily: '"Garamond", "Georgia", serif' }}>
       <h2 style={{
-        fontSize: '15px', fontWeight: 700, color: '#111',
-        letterSpacing: '4px', textTransform: 'uppercase',
+        fontSize: '35px', fontWeight: 700, color: '#2d2416',
+        letterSpacing: '-0.02em',
         margin: '0 0 7px', display: 'inline-block',
       }}>
         {title}
@@ -91,15 +91,15 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
 
   const InfoRow = ({ label, value }: { label: string; value?: string }) =>
     value ? (
-      <div style={{ display: 'flex', borderBottom: '1px solid #ede8d8', padding: '8px 0' }}>
+      <div style={{ display: 'flex', borderBottom: '1px solid #ede8d8', padding: '8px 0', fontFamily: '"Garamond", "Georgia", serif' }}>
         <span style={{
-          flex: '0 0 180px', fontSize: '11px', color: '#777',
-          fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase',
+          flex: '0 0 180px', fontSize: '12px', color: '#6b5d50',
+          fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase',
           paddingTop: '1px',
         }}>
           {label}
         </span>
-        <span style={{ flex: 1, fontSize: '12px', color: '#111', fontWeight: 500 }}>{value}</span>
+        <span style={{ flex: 1, fontSize: '13px', color: '#2d2416', fontWeight: 500 }}>{value}</span>
       </div>
     ) : null;
 
@@ -110,6 +110,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         marginTop: '40px',
         paddingTop: '28px',
         borderTop: '1px solid #ddd',
+        fontFamily: '"Garamond", "Georgia", serif',
       }}
     >
       <div
@@ -303,6 +304,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         alignItems: 'flex-end',
         gap: '60px',
         justifyContent: 'space-between',
+        fontFamily: '"Garamond", "Georgia", serif',
       }}
     >
       {/* Authorized signatory */}
@@ -481,6 +483,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
           justifyContent: 'space-between',
           alignItems: 'flex-start',
           marginBottom: '16px',
+          fontFamily: '"Garamond", "Georgia", serif',
         }}
       >
         {/* Left Side */}
@@ -488,7 +491,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
           <p
             style={{
               fontSize: '13px',
-              color: '#111',
+              color: '#2d2416',
               margin: 0,
               fontWeight: 600,
             }}
@@ -499,7 +502,7 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
           <p
             style={{
               fontSize: '14px',
-              color: '#111',
+              color: '#2d2416',
               margin: '4px 0 0',
               fontWeight: 700,
             }}
@@ -513,21 +516,21 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
           <p
             style={{
               fontSize: '13px',
-              color: '#666',
+              color: '#6b5d50',
               margin: 0,
             }}
           >
-            Date: <strong style={{ color: '#111' }}>{today}</strong>
+            Date: <strong style={{ color: '#2d2416' }}>{today}</strong>
           </p>
         </div>
       </div>
 
       <GoldDivider />
 
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75', marginBottom: '12px' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', marginBottom: '12px', fontFamily: '"Garamond", "Georgia", serif' }}>
         Dear <strong>{data.candidateName || '[Candidate Name]'}</strong>,
       </p>
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75', marginBottom: '16px' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', marginBottom: '16px', fontFamily: '"Garamond", "Georgia", serif' }}>
         We are pleased to extend an offer of employment to you for the position of{' '}
         <strong style={{ color: '#B8860B' }}>{data.position || '[Position]'}</strong>
         {data.department && <> within the <strong>{data.department}</strong> Department</>} at{' '}
@@ -542,8 +545,9 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         borderRadius: '0 4px 4px 0',
         padding: '14px 18px',
         marginBottom: '16px',
+        fontFamily: '"Garamond", "Georgia", serif',
       }}>
-        <p style={{ fontSize: '12px', fontWeight: 700, color: '#B8860B', letterSpacing: '1px', textTransform: 'uppercase', margin: '0 0 10px' }}>
+        <p style={{ fontSize: '18px', fontWeight: 600, color: '#2d2416', letterSpacing: '0.03em', textTransform: 'uppercase', margin: '0 0 10px' }}>
           Employment Details
         </p>
         <InfoRow label="Position" value={data.position} />
@@ -554,15 +558,15 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
       </div>
 
       {data.termsAndConditions && (
-        <div style={{ marginBottom: '14px' }}>
-          <p style={{ fontSize: '12px', fontWeight: 700, color: '#666', letterSpacing: '1px', textTransform: 'uppercase', margin: '0 0 6px', borderBottom: '1px solid #e8d89a', paddingBottom: '5px' }}>
+        <div style={{ marginBottom: '14px', fontFamily: '"Garamond", "Georgia", serif' }}>
+          <p style={{ fontSize: '18px', fontWeight: 600, color: '#2d2416', letterSpacing: '0.03em', textTransform: 'uppercase', margin: '0 0 6px', borderBottom: '1px solid #e8d89a', paddingBottom: '5px' }}>
             Terms &amp; Conditions
           </p>
           <p
             style={{
-              fontSize: '13px',
-              color: '#555',
-              lineHeight: '1.7',
+              fontSize: '16px',
+              color: '#3a3429',
+              lineHeight: '1.9',
               whiteSpace: 'pre-wrap',
               margin: 0,
             }}
@@ -572,10 +576,10 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         </div>
       )}
 
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75', marginBottom: '5px' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', marginBottom: '5px', fontFamily: '"Garamond", "Georgia", serif' }}>
         We look forward to welcoming you to the team. Please sign and return a copy of this letter to confirm your acceptance.
       </p>
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', fontFamily: '"Garamond", "Georgia", serif' }}>
         Congratulations and welcome aboard!
       </p>
 
@@ -589,23 +593,23 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
       <CompanyHeader />
       <DocumentTitle title="Relieving Letter" />
 
-      <div style={{ marginBottom: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <p style={{ fontSize: '13px', color: '#666', margin: '0' }}>
-          Date: <strong style={{ color: '#111' }}>{today}</strong>
+      <div style={{ marginBottom: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', fontFamily: '"Garamond", "Georgia", serif' }}>
+        <p style={{ fontSize: '13px', color: '#6b5d50', margin: '0' }}>
+          Date: <strong style={{ color: '#2d2416' }}>{today}</strong>
         </p>
         {data.employeeId && (
-          <p style={{ fontSize: '13px', color: '#666', margin: '0', textAlign: 'right' }}>
-            Ref: <strong style={{ color: '#111' }}>{data.employeeId}</strong>
+          <p style={{ fontSize: '13px', color: '#6b5d50', margin: '0', textAlign: 'right' }}>
+            Ref: <strong style={{ color: '#2d2416' }}>{data.employeeId}</strong>
           </p>
         )}
       </div>
 
       <GoldDivider />
 
-      <p style={{ fontSize: '13px', fontWeight: 700, color: '#111', marginBottom: '4px' }}>
+      <p style={{ fontSize: '16px', fontWeight: 700, color: '#2d2416', marginBottom: '4px', fontFamily: '"Garamond", "Georgia", serif' }}>
         To Whom It May Concern,
       </p>
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75', marginBottom: '16px' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', marginBottom: '16px', fontFamily: '"Garamond", "Georgia", serif' }}>
         This is to certify that{' '}
         <strong style={{ color: '#B8860B' }}>{data.employeeName || '[Employee Name]'}</strong>{' '}
         was employed with <strong>{data.companyName}</strong> as{' '}
@@ -621,8 +625,9 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
         borderRadius: '0 4px 4px 0',
         padding: '14px 18px',
         marginBottom: '16px',
+        fontFamily: '"Garamond", "Georgia", serif',
       }}>
-        <p style={{ fontSize: '13px', fontWeight: 700, color: '#B8860B', letterSpacing: '1px', textTransform: 'uppercase', margin: '0 0 10px' }}>
+        <p style={{ fontSize: '18px', fontWeight: 600, color: '#2d2416', letterSpacing: '0.03em', textTransform: 'uppercase', margin: '0 0 10px' }}>
           Service Record
         </p>
         <InfoRow label="Employee Name" value={data.employeeName} />
@@ -634,21 +639,21 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
       </div>
 
       {data.serviceDescription && (
-        <div style={{ marginBottom: '16px' }}>
-          <p style={{ fontSize: '13px', fontWeight: 700, color: '#666', letterSpacing: '1px', textTransform: 'uppercase', margin: '0 0 6px', borderBottom: '1px solid #e8d89a', paddingBottom: '5px' }}>
+        <div style={{ marginBottom: '16px', fontFamily: '"Garamond", "Georgia", serif' }}>
+          <p style={{ fontSize: '18px', fontWeight: 600, color: '#2d2416', letterSpacing: '0.03em', textTransform: 'uppercase', margin: '0 0 6px', borderBottom: '1px solid #e8d89a', paddingBottom: '5px' }}>
             Service Summary
           </p>
-          <p style={{ fontSize: '13px', color: '#555', lineHeight: '1.65', whiteSpace: 'pre-wrap', margin: 0 }}>
+          <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', whiteSpace: 'pre-wrap', margin: 0 }}>
             {data.serviceDescription}
           </p>
         </div>
       )}
 
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75', marginBottom: '6px' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', marginBottom: '6px', fontFamily: '"Garamond", "Georgia", serif' }}>
         {data.employeeName?.split(' ')[0] || 'The employee'} has completed all necessary handover
         formalities and has been relieved from their duties in accordance with company policies.
       </p>
-      <p style={{ fontSize: '13px', color: '#333', lineHeight: '1.75' }}>
+      <p style={{ fontSize: '16px', color: '#3a3429', lineHeight: '1.9', fontFamily: '"Garamond", "Georgia", serif' }}>
         We wish {data.employeeName?.split(' ')[0] || 'them'} the very best in all future endeavors.
       </p>
 
@@ -660,68 +665,20 @@ export const DocumentPreview: React.FC<DocumentPreviewProps> = ({ data }) => {
     switch (data.documentType) {
       case 'offer':     return renderOfferLetter();
       case 'relieving': return renderRelievingLetter();
-      default:          return <p>Unknown document type.</p>;
+      default:          return <p>Unknown document type</p>;
     }
   };
 
   return (
-    <>
-      <style>{`
-        @media print {
-          /* Hide everything on the page */
-          body * { visibility: hidden !important; }
-
-          /* Show only the letter */
-          #document-print-area,
-          #document-print-area * { visibility: visible !important; }
-
-          /* Position it to fill the A4 page */
-          #document-print-area {
-            position: fixed !important;
-            inset: 0 !important;
-            margin: 0 !important;
-            padding: 22px 30px !important;
-            max-width: 100% !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            /* Keep the gold border visible in print */
-            border: 2px solid #B8860B !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-          }
-
-          /* Hide screen-only corner ornaments */
-          .doc-corner { display: none !important; }
-
-          @page {
-            size: A4 portrait;
-            margin: 6mm 8mm;
-          }
-        }
-      `}</style>
-
-      <div
-        id="document-print-area"
-        style={{
-          background: '#fff',
-          border: '2px solid #B8860B',
-          boxShadow: '0 0 0 5px #fdf9f0',
-          borderRadius: '6px',
-          padding: '28px 32px',
-          maxWidth: '850px',
-          margin: '24px auto',
-          fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
-          color: '#111',
-          lineHeight: 1.6,
-          minHeight: '1100px',
-          position: 'relative',
-        }}
-      >
-        {renderContent()}
-      </div>
-    </>
+    <div style={{
+      fontFamily: '"Garamond", "Georgia", serif',
+      backgroundColor: '#fff',
+      padding: '40px',
+      maxWidth: '900px',
+      margin: '0 auto',
+      minHeight: '100vh',
+    }}>
+      {renderContent()}
+    </div>
   );
 };
