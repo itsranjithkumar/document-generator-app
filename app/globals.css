@@ -158,3 +158,55 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media print {
+  /* Force borders to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure document preview prints correctly */
+  #document-preview {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Force all borders to show */
+  #document-preview *,
+  #document-preview *::before,
+  #document-preview *::after {
+    border-style: solid !important;
+    border-color: inherit !important;
+  }
+
+  /* Ensure flex layouts work in print */
+  #document-preview [style*="display: flex"] {
+    display: flex !important;
+  }
+
+  /* Ensure images print correctly */
+  #document-preview img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Avoid page breaks inside important elements */
+  #document-preview > div {
+    page-break-inside: avoid !important;
+  }
+
+  /* Remove browser default print margins */
+  @page {
+    margin: 0.5cm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

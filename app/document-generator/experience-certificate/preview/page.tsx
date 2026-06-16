@@ -218,7 +218,7 @@ export default function CertificatePreview() {
                 borderBottom: "2px solid #d4af37",
               }}>
                 {/* Left Logo */}
-                <div style={{ width: 80, height: 80, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ width: 80, height: 80, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: "-8px" }}>
                   {data.logo ? (
                     <img src={data.logo} alt="Logo" style={{ maxWidth: "80px", maxHeight: "80px", objectFit: "contain" }} />
                   ) : (
@@ -372,7 +372,7 @@ export default function CertificatePreview() {
     color: "#2d2416",
     marginTop: 1,
     textAlign: "center",
-    fontWeight: 600,
+    fontWeight: 400,
     letterSpacing: "0.03em",
   }}
 >

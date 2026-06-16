@@ -3,7 +3,6 @@
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { DocumentPreview } from '@/components/DocumentPreview';
 import { FormData } from '@/lib/types';
 import { Edit2, Loader, Download } from 'lucide-react';
 
@@ -29,119 +28,43 @@ function PreviewContent() {
   }, []);
 
   const handleDownloadPDF = async () => {
-    const element = document.getElementById('document-print-area');
-    if (!element) return;
+    if (!previewRef.current || !formData) return;
 
     setIsDownloading(true);
 
     try {
-      // Dynamically import to avoid SSR issues
-      const html2canvas = (await import('html2canvas')).default;
-      const jsPDF = (await import('jspdf')).default;
+      const html2pdf = (await import('html2pdf.js')).default;
 
-      // A4 dimensions in mm
-      const A4_WIDTH_MM = 210;
-      const A4_HEIGHT_MM = 297;
+      const opt = {
+        margin: 0,
+        filename: `${formData?.documentType || 'document'}_${
+          formData?.candidateName ||
+          formData?.employeeName ||
+          formData?.companyName ||
+          'document'
+        }.pdf`.replace(/\s+/g, '_'),
+        image: { type: 'jpeg' as const, quality: 1 },
+        html2canvas: {
+          scale: 3,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          width: 794,
+          height: 1123,
+          windowWidth: 794,
+        },
+        jsPDF: {
+          unit: 'px',
+          format: [794, 1123] as [number, number],
+          orientation: 'portrait' as const,
+          hotfixes: ['px_scaling'],
+        },
+        pagebreak: { mode: ['avoid-all'] },
+      };
 
-      // Wrap a clone inside a padded container so all 4 sides of the
-      // gold border + absolute-positioned corner ornaments are captured fully.
-      const PADDING_PX = 40;
-
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = [
-        'position:fixed',
-        'top:-99999px',
-        'left:0',
-        `padding:${PADDING_PX}px`,
-        'background:#f3f4f6',
-        'box-sizing:content-box',
-        'display:inline-block',
-      ].join(';');
-
-      const clone = element.cloneNode(true) as HTMLElement;
-      clone.style.margin = '0';
-      clone.style.position = 'relative';
-      clone.style.width = `${element.offsetWidth}px`;
-
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-
-      // Two frames so layout fully settles before measuring
-      await new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-      );
-
-      const captureWidth  = wrapper.scrollWidth;
-      const captureHeight = wrapper.scrollHeight;
-
-      const canvas = await html2canvas(wrapper, {
-        scale: 3,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#f3f4f6',
-        logging: false,
-        width: captureWidth,
-        height: captureHeight,
-        windowWidth: captureWidth,
-        windowHeight: captureHeight,
-      });
-
-      document.body.removeChild(wrapper);
-
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
-
-      // Wrapper already adds 40px padding on all sides so use minimal PDF margins
-      const MARGIN_MM = 4;
-      const usableWidthMM  = A4_WIDTH_MM  - MARGIN_MM * 2;
-      const usableHeightMM = A4_HEIGHT_MM - MARGIN_MM * 2;
-
-      const canvasWidthPx  = canvas.width;
-      const canvasHeightPx = canvas.height;
-      const aspectRatio    = canvasHeightPx / canvasWidthPx;
-
-      let imgWidthMM  = usableWidthMM;
-      let imgHeightMM = imgWidthMM * aspectRatio;
-
-      // Scale down uniformly if too tall so everything fits on 1 page
-      if (imgHeightMM > usableHeightMM) {
-        const scale = usableHeightMM / imgHeightMM;
-        imgWidthMM  *= scale;
-        imgHeightMM  = usableHeightMM;
-      }
-
-      // Center on page
-      const xOffset = (A4_WIDTH_MM  - imgWidthMM)  / 2;
-      const yOffset = (A4_HEIGHT_MM - imgHeightMM) / 2;
-
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-        compress: true,
-      });
-
-      pdf.addImage(
-        imgData,
-        'JPEG',
-        xOffset,
-        yOffset,
-        imgWidthMM,
-        imgHeightMM,
-        undefined,
-        'FAST'
-      );
-
-      // Generate a sensible filename
-      const docType = formData?.documentType || 'document';
-      const name =
-        formData?.candidateName ||
-        formData?.employeeName ||
-        formData?.companyName ||
-        'document';
-      const safeName = name.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
-      pdf.save(`${docType}_${safeName}.pdf`);
-    } catch (err) {
-      console.error('PDF generation failed:', err);
+      await html2pdf().set(opt).from(previewRef.current).save();
+    } catch (error) {
+      console.error('PDF generation failed:', error);
       alert('Failed to generate PDF. Please try again.');
     } finally {
       setIsDownloading(false);
@@ -179,8 +102,24 @@ function PreviewContent() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <>
+      <style>{`
+        @media print {
+          body * { visibility: hidden !important; }
+          #document-preview, #document-preview * { visibility: visible !important; }
+          #document-preview {
+            position: fixed !important;
+            top: 0 !important; left: 0 !important;
+            width: 794px !important;
+            height: 1123px !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+          }
+        }
+      `}</style>
+
+      <main className="min-h-screen bg-gray-100 py-8 px-4">
+        <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row gap-4 justify-between items-start">
           <div>
@@ -224,9 +163,9 @@ function PreviewContent() {
         </div>
 
         {/* Preview Container */}
-        <div ref={previewRef} id="document-preview">
+        {/* <div ref={previewRef} id="document-preview">
           <DocumentPreview data={formData} />
-        </div>
+        </div> */}
 
         {/* Footer Actions */}
         <div className="mt-8 flex gap-4 justify-center">
@@ -257,6 +196,7 @@ function PreviewContent() {
         </div>
       </div>
     </main>
+    </>
   );
 }
 
